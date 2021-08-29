@@ -27,7 +27,7 @@ class Bird(UUIDModel):
     def avg_weight(self):
         return self.weights \
             .filter(time__lte=datetime.datetime.today(),
-                    time__gt=datetime.datetime.today() - datetime.timedelta(days=14)).aggregate(Avg('mass'))
+                    time__gt=datetime.datetime.today() - datetime.timedelta(days=14)).aggregate(Avg('mass'))['avg_mass']
 
     @property
     def hourly_weight_loss(self):
